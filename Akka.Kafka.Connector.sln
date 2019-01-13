@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.271
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Akka.Kafka.Connector", "Akka.Kafka.Connector\Akka.Kafka.Connector.csproj", "{5E9636B5-2D82-4331-B6F9-6E40BA01066B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Akka.Kafka.Connector.Shared", "Akka.Kafka.Connector.Shared\Akka.Kafka.Connector.Shared.csproj", "{4290EB51-1107-4103-807B-D8E7C7D24BFB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Akka.Kafka.Connector.Tests", "Akka.Kafka.Connector.Tests\Akka.Kafka.Connector.Tests.csproj", "{1D363286-0E26-4B9B-9A40-29036BE16692}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5E9636B5-2D82-4331-B6F9-6E40BA01066B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E9636B5-2D82-4331-B6F9-6E40BA01066B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E9636B5-2D82-4331-B6F9-6E40BA01066B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E9636B5-2D82-4331-B6F9-6E40BA01066B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4290EB51-1107-4103-807B-D8E7C7D24BFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4290EB51-1107-4103-807B-D8E7C7D24BFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4290EB51-1107-4103-807B-D8E7C7D24BFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4290EB51-1107-4103-807B-D8E7C7D24BFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D363286-0E26-4B9B-9A40-29036BE16692}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D363286-0E26-4B9B-9A40-29036BE16692}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D363286-0E26-4B9B-9A40-29036BE16692}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D363286-0E26-4B9B-9A40-29036BE16692}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AC7BFA39-99CA-477F-8943-00C0499A5F4A}
+	EndGlobalSection
+EndGlobal
