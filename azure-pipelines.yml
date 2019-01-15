@@ -30,7 +30,7 @@ steps:
     tokenSuffix: ')'
 - script: docker-compose -f docker-compose.azure-pipeline.yml build 
   displayName: 'docker-compose build $(buildConfiguration)'
-- script: docker-compose -f docker-compose.azure-pipeline.yml up 
+- script: docker-compose -f docker-compose.azure-pipeline.yml up --timeout 300
   displayName: 'docker-compose up $(buildConfiguration)'
 - script: docker-compose -f docker-compose.azure-pipeline.yml down
   displayName: 'docker-compose down $(buildConfiguration)'  
