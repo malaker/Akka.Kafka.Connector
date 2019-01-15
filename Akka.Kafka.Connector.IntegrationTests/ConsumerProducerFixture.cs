@@ -41,7 +41,9 @@ namespace Akka.Kafka.Connector.IntegrationTests
 
             var deliveryReport = await producer.Produce<Null, string>(null, rawMessage, topic);
 
-            var message = probe.ExpectMsg<Shared.Message<Null, string>>(TimeSpan.FromMinutes(1));
+            Sys.Log.Info($"Message published with {deliveryReport.TopicPartitionOffset.ToString()}");
+
+            var message = probe.ExpectMsg<Shared.Message<Null, string>>(TimeSpan.FromMinutes(5));
 
             Assert.Equal(rawMessage, message.Value);
             Assert.Equal(topic, message.Topic);
