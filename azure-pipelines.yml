@@ -25,8 +25,6 @@ steps:
   displayName: 'Replace tokens in **/docker-compose.azure-pipeline.yml'
   inputs:
     targetFiles: '**/docker-compose.azure-pipeline.yml'
-- script: docker-compose build -f docker-compose.azure-pipeline.yml
-  displayName: 'docker-compose build $(buildConfiguration)'
 - script: docker-compose up -f docker-compose.azure-pipeline.yml
   displayName: 'docker-compose up $(buildConfiguration)'
 - script: docker-compose -f docker-compose.azure-pipeline.yml down
