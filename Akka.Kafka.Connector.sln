@@ -3,11 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Akka.Kafka.Connector", "Akka.Kafka.Connector\Akka.Kafka.Connector.csproj", "{5E9636B5-2D82-4331-B6F9-6E40BA01066B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Akka.Kafka.Connector", "Akka.Kafka.Connector\Akka.Kafka.Connector.csproj", "{5E9636B5-2D82-4331-B6F9-6E40BA01066B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Akka.Kafka.Connector.Shared", "Akka.Kafka.Connector.Shared\Akka.Kafka.Connector.Shared.csproj", "{4290EB51-1107-4103-807B-D8E7C7D24BFB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Akka.Kafka.Connector.Shared", "Akka.Kafka.Connector.Shared\Akka.Kafka.Connector.Shared.csproj", "{4290EB51-1107-4103-807B-D8E7C7D24BFB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Akka.Kafka.Connector.Tests", "Akka.Kafka.Connector.Tests\Akka.Kafka.Connector.Tests.csproj", "{1D363286-0E26-4B9B-9A40-29036BE16692}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Akka.Kafka.Connector.Tests", "Akka.Kafka.Connector.Tests\Akka.Kafka.Connector.Tests.csproj", "{1D363286-0E26-4B9B-9A40-29036BE16692}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IntegrationTests", "IntegrationTests", "{825E4BBA-1140-4E0A-B5EB-B04DA0999302}"
+	ProjectSection(SolutionItems) = preProject
+		.env = .env
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Akka.Kafka.Connector.Producer", "Akka.Kafka.Connector.Producer\Akka.Kafka.Connector.Producer.csproj", "{74EAE76B-C008-4E7D-B13A-E0DCD469EDA7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Akka.Kafka.Connector.IntegrationTests", "Akka.Kafka.Connector.IntegrationTests\Akka.Kafka.Connector.IntegrationTests.csproj", "{36C12685-ECF9-4054-A858-FA8D7DE287A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,9 +37,21 @@ Global
 		{1D363286-0E26-4B9B-9A40-29036BE16692}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D363286-0E26-4B9B-9A40-29036BE16692}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D363286-0E26-4B9B-9A40-29036BE16692}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74EAE76B-C008-4E7D-B13A-E0DCD469EDA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74EAE76B-C008-4E7D-B13A-E0DCD469EDA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74EAE76B-C008-4E7D-B13A-E0DCD469EDA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74EAE76B-C008-4E7D-B13A-E0DCD469EDA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36C12685-ECF9-4054-A858-FA8D7DE287A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36C12685-ECF9-4054-A858-FA8D7DE287A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36C12685-ECF9-4054-A858-FA8D7DE287A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36C12685-ECF9-4054-A858-FA8D7DE287A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{74EAE76B-C008-4E7D-B13A-E0DCD469EDA7} = {825E4BBA-1140-4E0A-B5EB-B04DA0999302}
+		{36C12685-ECF9-4054-A858-FA8D7DE287A4} = {825E4BBA-1140-4E0A-B5EB-B04DA0999302}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AC7BFA39-99CA-477F-8943-00C0499A5F4A}

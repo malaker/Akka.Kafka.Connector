@@ -21,3 +21,14 @@ steps:
     command: test  
     projects: 'Akka.Kafka.Connector.Tests'  
     arguments: '--configuration $(buildConfiguration)'
+- task: qetza.replacetokens.replacetokens-task.replacetokens@3
+  displayName: 'Replace tokens in **/docker-compose.azure-pipeline.yml'
+  inputs:
+    targetFiles: '**/docker-compose.azure-pipeline.yml'
+- script: docker-compose build
+  displayName: 'docker-compose build $(buildConfiguration)'
+- script: docker-compose -f docker-compose.azure-pipeline.yml up
+  displayName: 'docker-compose up $(buildConfiguration)'
+- script: docker-compose down
+  displayName: 'docker-compose down $(buildConfiguration)'  
+  

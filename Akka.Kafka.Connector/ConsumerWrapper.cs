@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Akka.Kafka.Connector.Shared;
 using Confluent.Kafka;
@@ -12,6 +13,18 @@ namespace Akka.Kafka.Connector
         public ConsumerWrapper(Consumer<K, V> consumer)
         {
             this.consumer = consumer;
+            consumer.OnError += Consumer_OnError;
+            consumer.OnLog += Consumer_OnLog;
+        }
+
+        private void Consumer_OnLog(object sender, LogMessage e)
+        {
+            Console.WriteLine(e.Message);
+        }
+
+        private void Consumer_OnError(object sender, ErrorEvent e)
+        {
+            Console.WriteLine(e.Reason);
         }
 
         public bool IsDisposed => isDisposed;
@@ -42,7 +55,8 @@ namespace Akka.Kafka.Connector
 
         public ConsumeResult<K, V> Consume()
         {
-            return consumer.Consume();
+            var result = consumer.Consume();
+            return result;
         }
 
         public void Subscribe(IEnumerable<string> topics)

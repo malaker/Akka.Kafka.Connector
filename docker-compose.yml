@@ -1,0 +1,51 @@
+version: '3.7'
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper
+    environment:
+     - ZOOKEEPER_CLIENT_PORT=2181
+    ports:
+     - "2181:2181"
+    volumes:
+      - C:\docker_volumes\vol1\zk-data:/var/lib/zookeeper/data
+      - C:\docker_volumes\vol2\zk-txn-logs:/var/lib/zookeeper/log 
+  kafka:
+    depends_on: 
+      - "zookeeper"
+    image: confluentinc/cp-kafka
+    environment:
+     - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+     - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
+     - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
+    ports:
+     - "9092:9092"
+    volumes:
+      - C:\docker_volumes\vol3\kafka-data:/var/lib/kafka/data
+  topicCreator:
+    image: confluentinc/cp-kafka
+    env_file: 
+      - .env
+    depends_on:
+      - zookeeper
+      - kafka
+    command: |
+      bash -c 'echo Waiting for Kafka to be ready... && \
+      cub kafka-ready -b kafka:9092 1 200 && \
+      kafka-topics --create --topic ${KAFKA_TOPIC_NAME} --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:2181 && \
+      sleep 1000'
+  integrationtests:
+    env_file: 
+      - .env
+    depends_on:
+      - zookeeper
+      - kafka
+      - topicCreator
+    links:
+     - kafka
+     - zookeeper
+    image: ${DOCKER_REGISTRY-}integrationtests
+    build:
+      context: .
+      dockerfile: Akka.Kafka.Connector.IntegrationTests/Dockerfile
+    volumes:
+      - C:\docker_volumes\tests\:/src/Akka.Kafka.Connector.IntegrationTests/TestResults/
