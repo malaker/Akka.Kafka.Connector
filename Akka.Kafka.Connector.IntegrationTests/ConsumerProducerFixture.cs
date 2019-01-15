@@ -34,7 +34,9 @@ namespace Akka.Kafka.Connector.IntegrationTests
             var probe = CreateTestProbe();
             var config = new ProducerConfig { BootstrapServers = brokerlist };
             var consumer = Sys.ActorOf(Actor.Props.Create<ConsumerActor<Null, string>>(connectorConfig, new ConsumerFactory<Null, string>(connectorConfig.Settings, null, Deserializers.UTF8), probe));
-        
+
+            await Task.Delay(10000);
+
             TestProducerWrapper<Null, string> producer = new TestProducerWrapper<Null, string>(config);
 
             string rawMessage = "Hello world!";
