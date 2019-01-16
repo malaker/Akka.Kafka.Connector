@@ -36,7 +36,7 @@ steps:
   displayName: 'docker-compose down $(buildConfiguration)'
 - task: PublishTestResults@2
   inputs:
-    testResultsFormat: 'xUnit'
+    testResultsFormat: 'VSTest'
     testResultsFiles: '**/*.trx' 
     searchFolder: '$(Build.ArtifactStagingDirectory)' 
     #mergeTestResults: false # Optional
