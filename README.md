@@ -1,3 +1,8 @@
 # Akka.Kafka.Connector
 
-[![Build Status](https://dev.azure.com/kbalcerowski/Akka.Kafka.Connector/_apis/build/status/malaker.Akka.Kafka.Connector?branchName=master)](https://dev.azure.com/kbalcerowski/Akka.Kafka.Connector/_build/latest?definitionId=1?branchName=master)
+CI Build and Unit Tests
+[![Build Status](https://dev.azure.com/kbalcerowski/Akka.Kafka.Connector/_apis/build/status/Akka.Kafka.Connector-CI?branchName=master)](https://dev.azure.com/kbalcerowski/Akka.Kafka.Connector/_build/latest?definitionId=4?branchName=master)
+
+
+CI-Integration tests
+[![Build Status](https://dev.azure.com/kbalcerowski/Akka.Kafka.Connector/_apis/build/status/Akka.Kafka.Connector-CI-Integration-Tests?branchName=master)](https://dev.azure.com/kbalcerowski/Akka.Kafka.Connector/_build/latest?definitionId=5?branchName=master)
