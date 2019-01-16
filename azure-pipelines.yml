@@ -33,5 +33,15 @@ steps:
 - script: docker-compose -f docker-compose.azure-pipeline.yml up --exit-code-from integrationtests
   displayName: 'docker-compose up $(buildConfiguration)'
 - script: docker-compose -f docker-compose.azure-pipeline.yml down
-  displayName: 'docker-compose down $(buildConfiguration)'  
+  displayName: 'docker-compose down $(buildConfiguration)'
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: 'xUnit'
+    testResultsFiles: '**/*.trx' 
+    searchFolder: '$(Build.ArtifactStagingDirectory)' 
+    #mergeTestResults: false # Optional
+    #testRunTitle: # Optional
+    #buildPlatform: # Optional
+    #buildConfiguration: # Optional
+    #publishRunAttachments: true # Optional
   
