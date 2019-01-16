@@ -1,0 +1,41 @@
+# ASP.NET Core
+# Build and test ASP.NET Core projects targeting .NET Core.
+# Add steps that run tests, create a NuGet package, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+
+trigger:
+- master
+
+pool:
+  vmImage: 'Ubuntu-16.04'
+
+variables:
+  buildConfiguration: 'Release'
+
+steps:
+- script: dotnet build --configuration $(buildConfiguration)
+  displayName: 'dotnet build $(buildConfiguration)'
+- task: qetza.replacetokens.replacetokens-task.replacetokens@3
+  displayName: 'Replace tokens in **/docker-compose.azure-pipeline.yml'
+  inputs:
+    targetFiles: '**/docker-compose.azure-pipeline.yml'
+    inputs:
+    tokenPrefix: '$('
+    tokenSuffix: ')'
+- script: docker-compose -f docker-compose.azure-pipeline.yml build 
+  displayName: 'docker-compose build $(buildConfiguration)'
+- script: docker-compose -f docker-compose.azure-pipeline.yml up --exit-code-from integrationtests
+  displayName: 'docker-compose up $(buildConfiguration)'
+- script: docker-compose -f docker-compose.azure-pipeline.yml down
+  displayName: 'docker-compose down $(buildConfiguration)'
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: 'VSTest'
+    testResultsFiles: '**/*.trx' 
+    searchFolder: '$(Build.ArtifactStagingDirectory)' 
+    #mergeTestResults: false # Optional
+    #testRunTitle: # Optional
+    #buildPlatform: # Optional
+    #buildConfiguration: # Optional
+    #publishRunAttachments: true # Optional
+  
