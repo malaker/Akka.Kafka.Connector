@@ -27,7 +27,7 @@ namespace Akka.Kafka.Connector.Tests
 
             var probe = this.CreateTestProbe();
 
-            Sys.EventStream.Subscribe(probe, typeof(MessageConfirmed<Ignore, string>));
+            Sys.EventStream.Subscribe(probe, typeof(MessageConfirmed));
 
             ActorSelection selection = Sys.ActorSelection(probe.TestActor.Path);
 
@@ -36,14 +36,14 @@ namespace Akka.Kafka.Connector.Tests
 
             var message = probe.ExpectMsg<MessageToConfirm<Ignore, string>>();
 
-            subject.Tell(new MessageConfirmed<Ignore, string>(message.Id, message.Message), probe);
+            subject.Tell(new MessageConfirmed(message.Id, consumeResult.Topic, consumeResult.Partition.Value, consumeResult.Offset.Value), probe);
 
-            var confirmedMessage = probe.ExpectMsg<MessageConfirmed<Ignore, string>>();
+            var confirmedMessage = probe.ExpectMsg<MessageConfirmed>();
 
-            Assert.Equal(consumeResult.Topic, confirmedMessage.Message.Topic);
-            Assert.Equal(consumeResult.Partition.Value, confirmedMessage.Message.Partition);
-            Assert.Equal(consumeResult.Offset.Value, confirmedMessage.Message.Offset);
-            Assert.Equal(consumeResult.Value, confirmedMessage.Message.Value);
+            Assert.Equal(consumeResult.Topic, confirmedMessage.Topic);
+            Assert.Equal(consumeResult.Partition.Value, confirmedMessage.Partition);
+            Assert.Equal(consumeResult.Offset.Value, confirmedMessage.Offset);
+
 
         }
     }
